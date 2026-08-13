@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
-from PIL import ImageTk
+from PIL import Image, ImageTk
 import threading
 
-from api import obtener_carta
+from api import obtener_carta, obtener_cartas_por_tipo
 from cartas import (
     cartas_por_tipo,
     cargar_cartas_tipo,
@@ -26,6 +26,7 @@ def cambiar_tipo(event=None):
     buscar(carta["card_number"])
 
 def buscar(numero=None):
+    print("Buscar ejecutado")
     global carta_actual
 
     imagen_carta.config(image="")
@@ -43,11 +44,7 @@ def buscar(numero=None):
             carta = cache[numero]["carta"]
             imagen = cache[numero]["imagen"]
 
-            imagen_tk = ImageTk.PhotoImage(imagen)
-
-
         else:
-
             print("Consultando API:", numero)
 
             carta = obtener_carta(numero)
@@ -55,32 +52,77 @@ def buscar(numero=None):
             imagen = descargar_imagen(carta["image_url"])
 
             cache[numero] = {
-
                 "carta": carta,
-
                 "imagen": imagen
-
             }
 
-            imagen_tk = ImageTk.PhotoImage(imagen)
-        resultado.config(
-            text=f"""
-Nombre: {carta["name"]}
-Número: {carta["card_number"]}
-Color: {carta["color"]}
-Tipo: {carta["card_type"]}
-Coste: {carta["cost"]}
-AP: {carta["ap"]}
-HP: {carta["hp"]}
+            print()
+            print("Número recibido:", numero)
+            print("Número de la carta:", carta["card_number"])
+            print("Nombre:", carta["name"])
+            print()
 
-Efecto:
-{carta["effect"]}
-""",
-            wraplength=400
+        # ==========================================
+        # ACTUALIZAR DATOS DE LA CARTA
+        # ==========================================
+
+        label_codigo.config(
+            text=f'Código: {carta["card_number"]}'
         )
+
+        label_nombre.config(
+            text=carta["name"]
+        )
+
+        label_tipo.config(
+            text=f'Tipo: {carta["card_type"]}'
+        )
+
+        label_color.config(
+            text=f'Color: {carta["color"]}'
+        )
+
+        label_rareza.config(
+            text=f'Rareza: {carta["rarity"]}'
+        )
+
+        label_level.config(
+            text=f'Level: {carta["level"]}'
+        )
+
+        label_cost.config(
+            text=f'Cost: {carta["cost"]}'
+        )
+
+        label_ap.config(
+            text=f'AP: {carta["ap"]}'
+        )
+
+        label_hp.config(
+            text=f'HP: {carta["hp"]}'
+        )
+
+        label_effect.config(
+            text=f'Efecto:\n{carta["effect"]}'
+        )
+
+        # ==========================================
+        # MOSTRAR IMAGEN GRANDE
+        # ==========================================
+
+        imagen_grande = imagen.resize(
+            (imagen.width * 2, imagen.height * 2),
+            Image.Resampling.LANCZOS
+        )
+
+        imagen_tk = ImageTk.PhotoImage(imagen_grande)
 
         imagen_carta.config(image=imagen_tk)
         imagen_carta.image = imagen_tk
+
+        # ==========================================
+        # PRECARGAR SIGUIENTES CARTAS
+        # ==========================================
 
         indice_actual = obtener_indice_actual()
 
@@ -97,19 +139,22 @@ Efecto:
                     daemon=True
                 ).start()
 
-
     except (KeyError, ValueError):
-        resultado.config(
-            text="No se encontró la carta o la respuesta no es válida."
+        label_nombre.config(
+            text="No se encontró la carta"
         )
 
 def siguiente():
+    print("Tecla derecha")
+
     carta = siguiente_carta()
 
     entrada.delete(0, tk.END)
     entrada.insert(0, carta["card_number"])
 
     buscar(carta["card_number"])
+
+
 
 def anterior():
     carta = anterior_carta()
@@ -123,8 +168,22 @@ ventana = tk.Tk()
 
 carta = obtener_carta("GD01-002")
 
+print("AMURO:", obtener_carta("ST01-010"))
+print("HEERO:", obtener_carta("ST02-010"))
+print("MIKAZUKI:", obtener_carta("ST05-010"))
+
 
 cargar_cartas_tipo("UNIT")
+print("========== PILOTOS ==========")
+
+pilotos = obtener_cartas_por_tipo("PILOT")
+
+for carta in pilotos:
+    print(carta["card_number"], "-", carta["name"])
+
+print("TOTAL:", len(pilotos))
+
+print("=============================")
 cargar_cartas_tipo("PILOT")
 cargar_cartas_tipo("COMMAND")
 cargar_cartas_tipo("BASE")
@@ -137,7 +196,7 @@ print("RESOURCE:", len(cartas_por_tipo["RESOURCE"]))
 
 
 ventana.title("Gundam Card Explorer")
-ventana.geometry("900x600")
+ventana.geometry("1200x900")
 
 
 # Frame para el buscador
@@ -160,6 +219,9 @@ menu_tipo.bind("<<ComboboxSelected>>", cambiar_tipo)
 entrada = tk.Entry(frame_busqueda)
 entrada.pack(side="left")
 
+entrada.bind("<Left>", lambda event: "break")
+entrada.bind("<Right>", lambda event: "break")
+
 boton = tk.Button(frame_busqueda, text="Buscar", command=buscar)
 boton.pack(side="left", padx=5)
 
@@ -179,31 +241,96 @@ boton_siguiente.pack(side="left", padx=5)
 
 # Frame que contiene imagen y datos
 frame_contenido = tk.Frame(ventana)
-frame_contenido.pack()
-
+frame_contenido.pack(pady=10)
 
 # Frame de la imagen
 frame_imagen = tk.Frame(frame_contenido)
-frame_imagen.pack(side="left", padx=20)
+frame_imagen.pack(side="left", padx=30)
 
 imagen_carta = tk.Label(frame_imagen)
 imagen_carta.pack()
 
-
 # Frame de los datos
 frame_datos = tk.Frame(frame_contenido)
-frame_datos.pack(side="left", padx=20)
+frame_datos.pack(side="left", padx=30)
 
-resultado = tk.Label(
+label_codigo = tk.Label(
     frame_datos,
     text="",
-    justify="left",
-    anchor="nw",
-    wraplength=400
+    font=("Arial", 16, "bold")
 )
-resultado.pack()
+label_codigo.pack(anchor="w", pady=5)
+
+label_nombre = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 22, "bold")
+)
+label_nombre.pack(anchor="w", pady=10)
+
+label_tipo = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 16)
+)
+label_tipo.pack(anchor="w", pady=3)
+
+label_color = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 16)
+)
+label_color.pack(anchor="w", pady=3)
+
+label_rareza = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 16)
+)
+label_rareza.pack(anchor="w", pady=3)
+
+label_level = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 18, "bold")
+)
+label_level.pack(anchor="w", pady=3)
+
+label_cost = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 18, "bold")
+)
+label_cost.pack(anchor="w", pady=3)
+
+label_ap = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 18, "bold")
+)
+label_ap.pack(anchor="w", pady=3)
+
+label_hp = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 18, "bold")
+)
+label_hp.pack(anchor="w", pady=3)
+
+label_effect = tk.Label(
+    frame_datos,
+    text="",
+    font=("Arial", 16),
+    justify="left",
+    wraplength=350
+)
+label_effect.pack(anchor="w", pady=15)
 
 entrada.insert(0, "GD01-001")
 buscar("GD01-001")
+ventana.focus_set()
 
+ventana.bind("<Left>", lambda event: anterior())
+ventana.bind("<Right>", lambda event: siguiente())
+ventana.bind("<Return>", lambda event: buscar())
 ventana.mainloop()
