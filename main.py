@@ -10,10 +10,13 @@ from cartas import (
     cambiar_tipo as cambiar_tipo_carta,
     siguiente as siguiente_carta,
     anterior as anterior_carta,
-    obtener_indice_actual
+    obtener_indice_actual,
+    obtener_tipo_actual
+
 )
 from cache import cache, precargar
 from imagenes import descargar_imagen
+
 
 def cambiar_tipo(event=None):
     tipo = menu_tipo.get()
@@ -126,6 +129,16 @@ def buscar(numero=None):
 
         indice_actual = obtener_indice_actual()
 
+        tipo_actual = obtener_tipo_actual()
+
+        total_cartas = len(
+            cartas_por_tipo[tipo_actual]
+        )
+
+        label_contador.config(
+            text=f'Carta {indice_actual + 1} / {total_cartas}'
+        )
+
         for i in range(1, 4):
             indice_precargar = indice_actual + i
 
@@ -164,6 +177,22 @@ def anterior():
 
     buscar(carta["card_number"])
 
+def actualizar_botones():
+
+    indice = obtener_indice_actual()
+
+    total = len(cartas_por_tipo[menu_tipo.get()])
+
+    if indice == 0:
+        boton_anterior.config(state="disabled")
+    else:
+        boton_anterior.config(state="normal")
+
+    if indice >= total - 1:
+        boton_siguiente.config(state="disabled")
+    else:
+        boton_siguiente.config(state="normal")
+
 ventana = tk.Tk()
 
 carta = obtener_carta("GD01-002")
@@ -197,10 +226,14 @@ print("RESOURCE:", len(cartas_por_tipo["RESOURCE"]))
 
 ventana.title("Gundam Card Explorer")
 ventana.geometry("1200x900")
+ventana.configure(bg="#151922")
 
 
 # Frame para el buscador
-frame_busqueda = tk.Frame(ventana)
+frame_busqueda = tk.Frame(
+    ventana,
+    bg="#151922"
+)
 frame_busqueda.pack(pady=15)
 
 tipos = ["UNIT", "PILOT", "COMMAND", "BASE", "RESOURCE"]
@@ -209,111 +242,191 @@ menu_tipo = ttk.Combobox(
     frame_busqueda,
     values=tipos,
     state="readonly",
-    width=12
+    width=12,
+    font=("Arial", 14)
 )
+
+label_contador = tk.Label(
+    frame_busqueda,
+    text="",
+    font=("Arial", 14, "bold"),
+    bg="#151922",
+    fg="white"
+)
+
+label_contador.pack(side="left", padx=20)
 
 menu_tipo.set("UNIT")
 menu_tipo.pack(side="left", padx=5)
 menu_tipo.bind("<<ComboboxSelected>>", cambiar_tipo)
 
-entrada = tk.Entry(frame_busqueda)
-entrada.pack(side="left")
+entrada = tk.Entry(
+    frame_busqueda,
+    font=("Arial", 14, "bold"),
+    width=12,
+    bg="#303747",
+    fg="white",
+    insertbackground="white",
+    relief="sunken",
+    bd=3
+)
+
+entrada.pack(side="left", padx=5)
 
 entrada.bind("<Left>", lambda event: "break")
 entrada.bind("<Right>", lambda event: "break")
 
-boton = tk.Button(frame_busqueda, text="Buscar", command=buscar)
+boton = tk.Button(
+    frame_busqueda,
+    text="BUSCAR",
+    command=buscar,
+    font=("Arial", 12, "bold"),
+    bg="#303747",
+    fg="white",
+    activebackground="#4a556b",
+    activeforeground="white",
+    relief="raised",
+    bd=3,
+    padx=12,
+    pady=6
+)
 boton.pack(side="left", padx=5)
 
 boton_anterior = tk.Button(
     frame_busqueda,
-    text="← Atrás",
-    command=anterior
+    text="◀ ATRÁS",
+    command=anterior,
+    font=("Arial", 12, "bold"),
+    bg="#303747",
+    fg="white",
+    activebackground="#4a556b",
+    activeforeground="white",
+    relief="raised",
+    bd=3,
+    padx=12,
+    pady=6
 )
 boton_anterior.pack(side="left", padx=5)
 
 boton_siguiente = tk.Button(
     frame_busqueda,
-    text="Siguiente →",
-    command=siguiente
+    text="SIGUIENTE ▶",
+    command=siguiente,
+    font=("Arial", 12, "bold"),
+    bg="#303747",
+    fg="white",
+    activebackground="#4a556b",
+    activeforeground="white",
+    relief="raised",
+    bd=3,
+    padx=12,
+    pady=6
 )
 boton_siguiente.pack(side="left", padx=5)
 
 # Frame que contiene imagen y datos
-frame_contenido = tk.Frame(ventana)
+frame_contenido = tk.Frame(
+    ventana,
+    bg="#151922"
+)
 frame_contenido.pack(pady=10)
 
 # Frame de la imagen
-frame_imagen = tk.Frame(frame_contenido)
+frame_imagen = tk.Frame(
+    frame_contenido,
+    bg="#151922"
+)
 frame_imagen.pack(side="left", padx=30)
 
 imagen_carta = tk.Label(frame_imagen)
 imagen_carta.pack()
 
 # Frame de los datos
-frame_datos = tk.Frame(frame_contenido)
+frame_datos = tk.Frame(
+    frame_contenido,
+    bg="#151922"
+)
 frame_datos.pack(side="left", padx=30)
 
 label_codigo = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16, "bold")
+    font=("Arial", 16, "bold"),
+    bg="#151922",
+    fg="white"
 )
 label_codigo.pack(anchor="w", pady=5)
 
 label_nombre = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 22, "bold")
+    font=("Arial", 22, "bold"),
+    bg="#151922",
+    fg="white"
 )
+
 label_nombre.pack(anchor="w", pady=10)
 
 label_tipo = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16)
+    font=("Arial", 16),
+    bg="#151922",
+    fg="white"
 )
 label_tipo.pack(anchor="w", pady=3)
 
 label_color = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16)
+    font=("Arial", 16),
+    bg="#151922",
+    fg="white"
 )
 label_color.pack(anchor="w", pady=3)
 
 label_rareza = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16)
+    font=("Arial", 16),
+    bg="#151922",
+    fg="white"
 )
 label_rareza.pack(anchor="w", pady=3)
 
 label_level = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 18, "bold")
+    font=("Arial", 18, "bold"),
+    bg="#151922",
+    fg="white"
 )
 label_level.pack(anchor="w", pady=3)
 
 label_cost = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 18, "bold")
+    font=("Arial", 18, "bold"),
+    bg="#151922",
+    fg="white"
 )
 label_cost.pack(anchor="w", pady=3)
 
 label_ap = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 18, "bold")
+    font=("Arial", 18, "bold"),
+    bg="#151922",
+    fg="white"
 )
 label_ap.pack(anchor="w", pady=3)
 
 label_hp = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 18, "bold")
+    font=("Arial", 18, "bold"),
+    bg="#151922",
+    fg="white"
 )
 label_hp.pack(anchor="w", pady=3)
 
@@ -322,8 +435,11 @@ label_effect = tk.Label(
     text="",
     font=("Arial", 16),
     justify="left",
-    wraplength=350
+    wraplength=350,
+    bg="#151922",
+    fg="white"
 )
+
 label_effect.pack(anchor="w", pady=15)
 
 entrada.insert(0, "GD01-001")
