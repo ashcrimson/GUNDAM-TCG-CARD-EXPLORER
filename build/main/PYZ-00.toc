@@ -1413,6 +1413,7 @@
   ('typing',
    'C:\\Users\\subar\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\typing.py',
    'PYMODULE'),
+  ('ui', 'C:\\Users\\subar\\PycharmProjects\\Gundam\\ui.py', 'PYMODULE'),
   ('urllib',
    'C:\\Users\\subar\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\urllib\\__init__.py',
    'PYMODULE'),
