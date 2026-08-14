@@ -5,6 +5,7 @@ import threading
 import winsound
 import os
 import sys
+import random
 
 from api import obtener_carta, obtener_cartas_por_tipo
 from cartas import (
@@ -235,6 +236,222 @@ def sonido_pagina():
         winsound.SND_ASYNC
     )
 
+def abrir_sobre():
+
+    todas_las_cartas = []
+
+    for tipo in cartas_por_tipo:
+        todas_las_cartas.extend(
+            cartas_por_tipo[tipo]
+        )
+
+    # ==========================================
+    # SEPARAR CARTAS POR RAREZA
+    # ==========================================
+
+    cartas_por_rareza = {}
+
+    for carta in todas_las_cartas:
+
+        rareza = carta["rarity"]
+
+        if rareza not in cartas_por_rareza:
+            cartas_por_rareza[rareza] = []
+
+        cartas_por_rareza[rareza].append(carta)
+
+    # ==========================================
+    # PROBABILIDADES
+    # ==========================================
+
+    probabilidades = [
+        ("C", 50),
+        ("U", 25),
+        ("R", 15),
+        ("C +", 5),
+        ("P", 4),
+        ("LR", 1)
+    ]
+
+    sobre = []
+
+    # ==========================================
+    # SACAR 5 CARTAS
+    # ==========================================
+
+    for _ in range(5):
+
+        rarezas = []
+        pesos = []
+
+        for rareza, peso in probabilidades:
+
+            if rareza in cartas_por_rareza:
+                rarezas.append(rareza)
+                pesos.append(peso)
+
+        rareza_elegida = random.choices(
+            rarezas,
+            weights=pesos,
+            k=1
+        )[0]
+
+        carta = random.choice(
+            cartas_por_rareza[rareza_elegida]
+        )
+
+        sobre.append(carta)
+
+    # ==========================================
+    # PRECARGAR CARTAS DEL SOBRE
+    # ==========================================
+
+    for carta in sobre:
+
+        numero = carta["card_number"]
+
+        if numero not in cache:
+
+            threading.Thread(
+                target=precargar,
+                args=(numero,),
+                daemon=True
+            ).start()
+
+    mostrar_sobre(sobre)
+
+def mostrar_sobre(cartas):
+
+    ventana_sobre = tk.Toplevel(ventana)
+
+    ventana_sobre.title("Apertura de sobre")
+
+    ventana_sobre.geometry("700x900")
+
+    ventana_sobre.configure(bg="#151922")
+    ventana_sobre.focus_force()
+    ventana_sobre.focus_set()
+
+    indice = 0
+
+    label_imagen = tk.Label(
+        ventana_sobre,
+        bg="#151922"
+    )
+
+    label_nombre = tk.Label(
+        ventana_sobre,
+        text="",
+        font=("Arial", 20, "bold"),
+        bg="#151922",
+        fg="white"
+    )
+
+    label_nombre.pack(pady=20)
+
+    label_texto = tk.Label(
+        ventana_sobre,
+        text="ESPACIO → siguiente carta",
+        font=("Arial", 14),
+        bg="#151922",
+        fg="white"
+    )
+
+    label_texto.pack(pady=20)
+
+    def mostrar_carta():
+
+        carta = cartas[indice]
+
+        numero = carta["card_number"]
+
+        if numero not in cache:
+            precargar(numero)
+
+        imagen = cache[numero]["imagen"]
+
+        imagen_grande = imagen.resize(
+            (
+                imagen.width * 2,
+                imagen.height * 2
+            ),
+            Image.Resampling.LANCZOS
+        )
+
+        imagen_tk = ImageTk.PhotoImage(
+            imagen_grande
+        )
+
+        label_imagen.config(
+            image=imagen_tk
+        )
+
+        label_imagen.image = imagen_tk
+
+        label_nombre.config(
+            text=carta["name"]
+        )
+
+        # Posición inicial: fuera de la ventana
+        x = -imagen_grande.width
+
+        label_imagen.place(
+            x=x,
+            y=20
+        )
+
+        def animar():
+
+            nonlocal x
+
+            x += 40
+
+            if x >= 50:
+
+                x = 50
+
+                label_imagen.place(
+                    x=x,
+                    y=20
+                )
+
+                return
+
+            label_imagen.place(
+                x=x,
+                y=20
+            )
+
+            ventana_sobre.after(
+                15,
+                animar
+            )
+
+        animar()
+
+    def siguiente(event=None):
+
+        nonlocal indice
+
+        indice += 1
+
+        if indice >= len(cartas):
+
+            ventana_sobre.destroy()
+
+            return
+
+        mostrar_carta()
+
+    ventana_sobre.bind(
+        "<space>",
+        siguiente
+    )
+
+    mostrar_carta()
+
+
+
 def siguiente():
     print("Tecla derecha")
 
@@ -329,6 +546,35 @@ print("COMMAND:", len(cartas_por_tipo["COMMAND"]))
 print("BASE:", len(cartas_por_tipo["BASE"]))
 print("RESOURCE:", len(cartas_por_tipo["RESOURCE"]))
 
+print("========== RAREZAS ==========")
+
+rarezas = set()
+
+for tipo in cartas_por_tipo:
+    for carta in cartas_por_tipo[tipo]:
+        rarezas.add(carta["rarity"])
+
+for rareza in sorted(rarezas):
+    print(rareza)
+
+print("=============================")
+
+print("========== CANTIDAD POR RAREZA ==========")
+
+for rareza in sorted(rarezas):
+
+    cantidad = 0
+
+    for tipo in cartas_por_tipo:
+        for carta in cartas_por_tipo[tipo]:
+
+            if carta["rarity"] == rareza:
+                cantidad += 1
+
+    print(rareza, ":", cantidad)
+
+print("==========================================")
+
 
 ventana.title("Gundam Card Explorer")
 ventana.geometry("1400x900")
@@ -397,6 +643,24 @@ boton = tk.Button(
     pady=6
 )
 boton.pack(side="left", padx=5)
+
+boton_sobre = tk.Button(
+    frame_busqueda,
+    text="🎁 ABRIR SOBRE",
+    command=abrir_sobre,
+    font=("Arial", 12, "bold"),
+    bg="#303747",
+    fg="white",
+    relief="raised",
+    bd=3,
+    padx=12,
+    pady=6
+)
+
+boton_sobre.pack(
+    side="left",
+    padx=5
+)
 
 # boton_anterior = tk.Button(
 #     frame_busqueda,
