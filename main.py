@@ -3,6 +3,8 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import threading
 import winsound
+import os
+import sys
 
 from api import obtener_carta, obtener_cartas_por_tipo
 from cartas import (
@@ -216,14 +218,34 @@ def deslizar_carta(direccion, numero):
     animar(x_inicio)
 
 def sonido_pagina():
+
+    if getattr(sys, "frozen", False):
+        carpeta_base = sys._MEIPASS
+    else:
+        carpeta_base = os.path.dirname(os.path.abspath(__file__))
+
+    ruta_sonido = os.path.join(
+        carpeta_base,
+        "sonidos",
+        "pagina.wav"
+    )
+
     winsound.PlaySound(
-        "sonidos/pagina.wav",
+        ruta_sonido,
         winsound.SND_ASYNC
     )
 
 def siguiente():
     print("Tecla derecha")
+
+    indice = obtener_indice_actual()
+    total = len(cartas_por_tipo[menu_tipo.get()])
+
+    if indice >= total - 1:
+        return
+
     sonido_pagina()
+
     carta = siguiente_carta()
 
     entrada.delete(0, tk.END)
@@ -234,9 +256,15 @@ def siguiente():
         carta["card_number"]
     )
 
-
 def anterior():
+
+    indice = obtener_indice_actual()
+
+    if indice <= 0:
+        return
+
     sonido_pagina()
+
     carta = anterior_carta()
 
     entrada.delete(0, tk.END)
