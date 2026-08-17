@@ -1,0 +1,182 @@
+{
+    "GD02-121": {
+        "card_number": "GD02-121",
+        "name": "Dominion",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD04-124": {
+        "card_number": "GD04-124",
+        "name": "9th Tactical Testing Sector",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-083": {
+        "card_number": "EB01-083",
+        "name": "SP Conversion Chips",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-033": {
+        "card_number": "EB01-033",
+        "name": "Taurus (Sanc Kingdom)",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-077": {
+        "card_number": "GD01-077",
+        "name": "Strike Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-108": {
+        "card_number": "GD01-108",
+        "name": "Strategic Arms",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "EB01-016": {
+        "card_number": "EB01-016",
+        "name": "Tornado Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-087": {
+        "card_number": "GD04-087",
+        "name": "Elan Ceres (Enhanced Person Number 5)",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-059": {
+        "card_number": "RP-059",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "ST02-015": {
+        "card_number": "ST02-015",
+        "name": "Saint Gabriel Institute",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD03-099": {
+        "card_number": "GD03-099",
+        "name": "Emma Sheen",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD05-124": {
+        "card_number": "GD05-124",
+        "name": "White Ark",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD03-107": {
+        "card_number": "GD03-107",
+        "name": "Over the River and Through the Woods",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "R-038": {
+        "card_number": "R-038",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "RP-027": {
+        "card_number": "RP-027",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "RP-060": {
+        "card_number": "RP-060",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "R-007": {
+        "card_number": "R-007",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-099": {
+        "card_number": "GD01-099",
+        "name": "Intercept Orders",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "EB01-028": {
+        "card_number": "EB01-028",
+        "name": "Gundam Plutone",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD02-124": {
+        "card_number": "GD02-124",
+        "name": "Diva",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-002": {
+        "card_number": "GD01-002",
+        "name": "Unicorn Gundam (Destroy Mode)",
+        "rarity": "LR",
+        "quantity": 1
+    },
+    "ST09-008": {
+        "card_number": "ST09-008",
+        "name": "Shinn Asuka",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-124": {
+        "card_number": "GD01-124",
+        "name": "Side 7",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST04-012": {
+        "card_number": "ST04-012",
+        "name": "Striker Pack",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-105": {
+        "card_number": "GD05-105",
+        "name": "Exclusively Defense-Oriented Policy",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-072": {
+        "card_number": "GD01-072",
+        "name": "Launcher Strike Gundam",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-036": {
+        "card_number": "RP-036",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "EB01-052": {
+        "card_number": "EB01-052",
+        "name": "Hildolfr",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST02-013": {
+        "card_number": "ST02-013",
+        "name": "Peaceful Timbre",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-117": {
+        "card_number": "GD01-117",
+        "name": "The Witch and the Bride",
+        "rarity": "R",
+        "quantity": 1
+    }
+}
