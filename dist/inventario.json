@@ -28,5 +28,35 @@
         "name": "Resource",
         "rarity": "P",
         "quantity": 1
+    },
+    "GD01-056": {
+        "card_number": "GD01-056",
+        "name": "Geara Doga (Sleeves)",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-017": {
+        "card_number": "R-017",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-111": {
+        "card_number": "GD05-111",
+        "name": "Airframe​ Seizure",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "R-029": {
+        "card_number": "R-029",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-109": {
+        "card_number": "GD02-109",
+        "name": "Undying Persistence",
+        "rarity": "C",
+        "quantity": 1
     }
 }
