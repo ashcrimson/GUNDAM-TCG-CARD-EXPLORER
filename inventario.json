@@ -3,7 +3,7 @@
         "card_number": "GD02-121",
         "name": "Dominion",
         "rarity": "U",
-        "quantity": 1
+        "quantity": 2
     },
     "GD04-124": {
         "card_number": "GD04-124",
@@ -87,13 +87,13 @@
         "card_number": "RP-027",
         "name": "Resource",
         "rarity": "P",
-        "quantity": 1
+        "quantity": 2
     },
     "RP-060": {
         "card_number": "RP-060",
         "name": "Resource",
         "rarity": "P",
-        "quantity": 1
+        "quantity": 2
     },
     "R-007": {
         "card_number": "R-007",
@@ -147,7 +147,7 @@
         "card_number": "GD05-105",
         "name": "Exclusively Defense-Oriented Policy",
         "rarity": "C",
-        "quantity": 1
+        "quantity": 2
     },
     "GD01-072": {
         "card_number": "GD01-072",
@@ -177,6 +177,498 @@
         "card_number": "GD01-117",
         "name": "The Witch and the Bride",
         "rarity": "R",
+        "quantity": 1
+    },
+    "GD04-089": {
+        "card_number": "GD04-089",
+        "name": "Nena Trinity",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "RP-049": {
+        "card_number": "RP-049",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 2
+    },
+    "ST06-013": {
+        "card_number": "ST06-013",
+        "name": "Fierce Unity",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-084": {
+        "card_number": "GD05-084",
+        "name": "Odelo Henrik",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "EB01-082": {
+        "card_number": "EB01-082",
+        "name": "Warship Cruise",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "R-023": {
+        "card_number": "R-023",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-104": {
+        "card_number": "GD04-104",
+        "name": "Shrike Team's Bulwark",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST09-010": {
+        "card_number": "ST09-010",
+        "name": "Minerva",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-063": {
+        "card_number": "GD01-063",
+        "name": "ZnO",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "EB01-080": {
+        "card_number": "EB01-080",
+        "name": "Sturm Faust",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD03-106": {
+        "card_number": "GD03-106",
+        "name": "M.A.V. Tactics",
+        "rarity": "U",
+        "quantity": 2
+    },
+    "GD01-078": {
+        "card_number": "GD01-078",
+        "name": "Mistral",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-118": {
+        "card_number": "GD05-118",
+        "name": "Incendiary Spark",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-012": {
+        "card_number": "GD01-012",
+        "name": "Zechs' Leo",
+        "rarity": "U",
+        "quantity": 2
+    },
+    "RP-019": {
+        "card_number": "RP-019",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD03-121": {
+        "card_number": "GD03-121",
+        "name": "Unheralded Attack",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-111": {
+        "card_number": "GD04-111",
+        "name": "Trinity",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "RP-065": {
+        "card_number": "RP-065",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "RP-064": {
+        "card_number": "RP-064",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 2
+    },
+    "GD04-125": {
+        "card_number": "GD04-125",
+        "name": "Trinity Warship",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "ST03-012": {
+        "card_number": "ST03-012",
+        "name": "Indignation",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-128": {
+        "card_number": "GD05-128",
+        "name": "Gundam Fight",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-024": {
+        "card_number": "R-024",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-114": {
+        "card_number": "GD05-114",
+        "name": "Widespread Annihilation",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD04-094": {
+        "card_number": "GD04-094",
+        "name": "Pala Sys",
+        "rarity": "U",
+        "quantity": 2
+    },
+    "R-035": {
+        "card_number": "R-035",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-087": {
+        "card_number": "EB01-087",
+        "name": "Marina Ismail & Ptolemaios 2",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "EB01-055": {
+        "card_number": "EB01-055",
+        "name": "Dom Gross Beil",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-084": {
+        "card_number": "GD01-084",
+        "name": "Beguir-Pente",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "RP-017": {
+        "card_number": "RP-017",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD03-093": {
+        "card_number": "GD03-093",
+        "name": "Carris Nautilus",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-046": {
+        "card_number": "GD01-046",
+        "name": "Buster Gundam",
+        "rarity": "LR",
+        "quantity": 1
+    },
+    "GD01-105": {
+        "card_number": "GD01-105",
+        "name": "Citizens, Take a Stand!",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD02-087": {
+        "card_number": "GD02-087",
+        "name": "Orga, Crot, and Shani",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "GD02-115": {
+        "card_number": "GD02-115",
+        "name": "Familial Devotion",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-130": {
+        "card_number": "GD05-130",
+        "name": "Presidential Office",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST05-010": {
+        "card_number": "ST05-010",
+        "name": "Mikazuki Augus",
+        "rarity": "C +",
+        "quantity": 1
+    },
+    "GD05-123": {
+        "card_number": "GD05-123",
+        "name": "Archangel",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "ST10-012": {
+        "card_number": "ST10-012",
+        "name": "Mark Guilder",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-088": {
+        "card_number": "EB01-088",
+        "name": "Miorine Rembran & Academy Ship",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-056": {
+        "card_number": "GD01-056",
+        "name": "Geara Doga (Sleeves)",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "RP-025": {
+        "card_number": "RP-025",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD05-100": {
+        "card_number": "GD05-100",
+        "name": "Quatre Raberba Winner",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD05-104": {
+        "card_number": "GD05-104",
+        "name": "At the Risk of One's Life",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST03-015": {
+        "card_number": "ST03-015",
+        "name": "Rewloola",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST08-010": {
+        "card_number": "ST08-010",
+        "name": "Hathaway Noa",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-051": {
+        "card_number": "EB01-051",
+        "name": "Ze'Gok",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-050": {
+        "card_number": "GD01-050",
+        "name": "LaGOWE",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "RP-020": {
+        "card_number": "RP-020",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD04-092": {
+        "card_number": "GD04-092",
+        "name": "Michael Trinity",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "GD05-120": {
+        "card_number": "GD05-120",
+        "name": "Shining Finger",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-026": {
+        "card_number": "RP-026",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD01-125": {
+        "card_number": "GD01-125",
+        "name": "Zanzibar",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-037": {
+        "card_number": "RP-037",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD02-116": {
+        "card_number": "GD02-116",
+        "name": "Comrades Come First",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-048": {
+        "card_number": "GD01-048",
+        "name": "Zaku I Sniper Type",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-041": {
+        "card_number": "GD01-041",
+        "name": "Shenlong Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-009": {
+        "card_number": "R-009",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST01-014": {
+        "card_number": "ST01-014",
+        "name": "Unforeseen Incident",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-116": {
+        "card_number": "GD01-116",
+        "name": "Stealth Stratagem",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-099": {
+        "card_number": "GD04-099",
+        "name": "Ali al-Saachez",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-016": {
+        "card_number": "GD01-016",
+        "name": "Jegan",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-035": {
+        "card_number": "EB01-035",
+        "name": "Gundam Lfrith Thorn",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-125": {
+        "card_number": "GD02-125",
+        "name": "Gwadan",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD02-127": {
+        "card_number": "GD02-127",
+        "name": "Freeden",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-003": {
+        "card_number": "RP-003",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "RP-010": {
+        "card_number": "RP-010",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD04-084": {
+        "card_number": "GD04-084",
+        "name": "Sleggar Law",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-040": {
+        "card_number": "GD01-040",
+        "name": "Wing Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-117": {
+        "card_number": "GD02-117",
+        "name": "A New Sign",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-065": {
+        "card_number": "GD01-065",
+        "name": "Freedom Gundam",
+        "rarity": "LR",
+        "quantity": 1
+    },
+    "EB01-020": {
+        "card_number": "EB01-020",
+        "name": "Gundam Mk-Ⅲ",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-018": {
+        "card_number": "GD01-018",
+        "name": "ReZEL",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-007": {
+        "card_number": "EB01-007",
+        "name": "Gundam TR-1 \"Hazel-Rah\"",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "R-022": {
+        "card_number": "R-022",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-026": {
+        "card_number": "R-026",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-093": {
+        "card_number": "GD02-093",
+        "name": "Olba Frost",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "RP-011": {
+        "card_number": "RP-011",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "ST04-011": {
+        "card_number": "ST04-011",
+        "name": "Athrun Zala",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST04-013": {
+        "card_number": "ST04-013",
+        "name": "Hawk of Endymion",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-023": {
+        "card_number": "EB01-023",
+        "name": "Le Cygne (EX)",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-122": {
+        "card_number": "GD01-122",
+        "name": "Covert Operative",
+        "rarity": "C",
         "quantity": 1
     }
 }

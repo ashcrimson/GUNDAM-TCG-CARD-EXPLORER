@@ -28,6 +28,7 @@ def reproducir_musica():
 
     pygame.mixer.music.load(ruta)
     pygame.mixer.music.play(-1)
+    volumen(0.2)
 
 
 def detener_musica():

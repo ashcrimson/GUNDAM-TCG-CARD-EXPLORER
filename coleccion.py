@@ -1,4 +1,6 @@
 import tkinter as tk
+import os
+import sys
 from PIL import Image, ImageTk
 
 from inventario import cargar_inventario
@@ -6,7 +8,25 @@ from cache import cache, precargar
 from api import obtener_carta
 from imagenes import descargar_imagen
 
+FUENTE_UI = "Neo Gen"
 
+def obtener_ruta_imagen(nombre):
+
+    if getattr(sys, "frozen", False):
+
+        carpeta_base = sys._MEIPASS
+
+    else:
+
+        carpeta_base = os.path.dirname(
+            os.path.abspath(__file__)
+        )
+
+    return os.path.join(
+        carpeta_base,
+        "imagenes",
+        nombre
+    )
 def obtener_imagen_carta(numero):
 
     if numero in cache:
@@ -113,6 +133,8 @@ def abrir_coleccion(ventana):
         bg="#151922"
     )
 
+
+
     # ==========================================
     # TÍTULO
     # ==========================================
@@ -120,8 +142,8 @@ def abrir_coleccion(ventana):
     titulo = tk.Label(
         ventana_coleccion,
         text="MI COLECCIÓN",
-        font=("Arial", 28, "bold"),
-        bg="#151922",
+        font=(FUENTE_UI, 28, "bold"),
+        bg="#0b0f16",
         fg="white"
     )
 
@@ -168,7 +190,7 @@ def abrir_coleccion(ventana):
 
     contenedor = tk.Frame(
         ventana_coleccion,
-        bg="#151922"
+        bg="black"
     )
 
     contenedor.pack(

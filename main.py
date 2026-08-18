@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import font
 from PIL import Image, ImageTk
 import threading
 import winsound
 import os
 import sys
 import random
+
 
 from sobres import abrir_sobre
 from coleccion import abrir_coleccion
@@ -307,6 +309,17 @@ def actualizar_botones():
 
 ventana = tk.Tk()
 
+# ==========================================
+# FUENTE DE LA INTERFAZ
+# ==========================================
+
+FUENTE_UI = "Neo Gen"
+
+ventana.option_add(
+    "*Font",
+    (FUENTE_UI, 14)
+)
+
 carta = obtener_carta("GD01-002")
 
 print("AMURO:", obtener_carta("ST01-010"))
@@ -384,13 +397,13 @@ menu_tipo = ttk.Combobox(
     values=tipos,
     state="readonly",
     width=12,
-    font=("Arial", 14)
+    font=(FUENTE_UI, 14)
 )
 
 label_contador = tk.Label(
     frame_busqueda,
     text="",
-    font=("Arial", 14, "bold"),
+    font=(FUENTE_UI, 14, "bold"),
     bg="#0b0f16",
     fg="white"
 )
@@ -403,7 +416,7 @@ menu_tipo.bind("<<ComboboxSelected>>", cambiar_tipo)
 
 entrada = tk.Entry(
     frame_busqueda,
-    font=("Arial", 14, "bold"),
+    font=(FUENTE_UI, 14, "bold"),
     width=12,
     bg="#303747",
     fg="white",
@@ -417,21 +430,62 @@ entrada.pack(side="left", padx=5)
 entrada.bind("<Left>", lambda event: "break")
 entrada.bind("<Right>", lambda event: "break")
 
+def configurar_hover(boton):
+
+    def entrar(event):
+        if boton["state"] == "normal":
+            boton.config(
+                bg="#3a4354"
+            )
+
+    def salir(event):
+        if boton["state"] == "normal":
+            boton.config(
+                bg="#202632"
+            )
+
+    boton.bind("<Enter>", entrar)
+    boton.bind("<Leave>", salir)
+
 boton = tk.Button(
     frame_busqueda,
     text="BUSCAR",
     command=buscar,
-    font=("Arial", 12, "bold"),
-    bg="#303747",
+    font=(FUENTE_UI, 12, "bold"),
+    bg="#202632",
     fg="white",
-    activebackground="#4a556b",
+    activebackground="#56627a",
     activeforeground="white",
     relief="raised",
-    bd=3,
-    padx=12,
-    pady=6
+    bd=4,
+    padx=20,
+    pady=9,
+    cursor="hand2"
 )
 boton.pack(side="left", padx=5)
+configurar_hover(boton)
+
+def boton_entrar(event):
+    event.widget.config(
+        bg="#3a4354"
+    )
+
+
+def boton_salir(event):
+    event.widget.config(
+        bg="#202632"
+    )
+
+
+boton.bind(
+    "<Enter>",
+    boton_entrar
+)
+
+boton.bind(
+    "<Leave>",
+    boton_salir
+)
 
 boton_sobre = tk.Button(
     frame_busqueda,
@@ -440,39 +494,45 @@ boton_sobre = tk.Button(
         ventana,
         cartas_por_tipo
     ),
-    font=("Arial", 12, "bold"),
-    bg="#303747",
+    font=(FUENTE_UI, 12, "bold"),
+    bg="#252b38",
     fg="white",
+    activebackground="#4a556b",
+    activeforeground="white",
     relief="raised",
     bd=3,
-    padx=12,
-    pady=6
+    padx=18,
+    pady=8,
+    cursor="hand2"
 )
 
 boton_sobre.pack(
     side="left",
     padx=5
 )
+configurar_hover(boton_sobre)
 
 boton_coleccion = tk.Button(
     frame_busqueda,
     text="📖 MI COLECCIÓN",
     command=lambda: abrir_coleccion(ventana),
-    font=("Arial", 12, "bold"),
-    bg="#303747",
+    font=(FUENTE_UI, 12, "bold"),
+    bg="#252b38",
     fg="white",
     activebackground="#4a556b",
     activeforeground="white",
     relief="raised",
     bd=3,
-    padx=12,
-    pady=6
+    padx=18,
+    pady=8,
+    cursor="hand2"
 )
 
 boton_coleccion.pack(
     side="left",
     padx=5
 )
+configurar_hover(boton_coleccion)
 
 # boton_anterior = tk.Button(
 #     frame_busqueda,
@@ -528,17 +588,24 @@ boton_anterior = tk.Button(
     frame_navegacion,
     text="◀",
     command=anterior,
-    font=("Arial", 28, "bold"),
-    bg="#303747",
+    font=(FUENTE_UI, 28, "bold"),
+    bg="#202632",
     fg="white",
+    activebackground="#56627a",
+    activeforeground="white",
     width=2,
-    height=3
+    height=3,
+    relief="raised",
+    bd=4,
+    cursor="hand2"
 )
 
 boton_anterior.pack(
     side="left",
     padx=15
 )
+
+configurar_hover(boton_anterior)
 
 frame_imagen = tk.Frame(
     frame_navegacion,
@@ -565,11 +632,16 @@ boton_siguiente = tk.Button(
     frame_navegacion,
     text="▶",
     command=siguiente,
-    font=("Arial", 28, "bold"),
-    bg="#303747",
+    font=(FUENTE_UI, 28, "bold"),
+    bg="#202632",
     fg="white",
+    activebackground="#56627a",
+    activeforeground="white",
     width=2,
-    height=3
+    height=3,
+    relief="raised",
+    bd=4,
+    cursor="hand2"
 )
 
 boton_siguiente.pack(
@@ -577,12 +649,14 @@ boton_siguiente.pack(
     padx=15
 )
 
+configurar_hover(boton_siguiente)
+
 # Frame de los datos
 frame_borde = tk.Frame(
     frame_contenido,
-    bg="#ff8c00",
-    padx=3,
-    pady=3
+    bg="#151922",
+    padx=0,
+    pady=0
 )
 
 frame_borde.pack(
@@ -602,7 +676,7 @@ frame_datos.pack()
 label_codigo = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16, "bold"),
+    font=(FUENTE_UI, 16, "bold"),
     bg="#0b0f16",
     fg="white"
 )
@@ -611,7 +685,7 @@ label_codigo.pack(anchor="w", pady=5)
 label_nombre = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 24, "bold"),
+    font=(FUENTE_UI, 24, "bold"),
     bg="#0b0f16",
     fg="white"
 )
@@ -621,7 +695,7 @@ label_nombre.pack(anchor="w", pady=10)
 label_tipo = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16),
+    font=(FUENTE_UI, 16),
     bg="#0b0f16",
     fg="white"
 )
@@ -630,7 +704,7 @@ label_tipo.pack(anchor="w", pady=3)
 label_color = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16),
+    font=(FUENTE_UI, 16),
     bg="#0b0f16",
     fg="white"
 )
@@ -639,7 +713,7 @@ label_color.pack(anchor="w", pady=3)
 label_rareza = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16),
+    font=(FUENTE_UI, 16),
     bg="#0b0f16",
     fg="white"
 )
@@ -657,7 +731,7 @@ frame_stats.pack(
 label_level = tk.Label(
     frame_stats,
     text="",
-    font=("Arial", 16, "bold"),
+    font=(FUENTE_UI, 16, "bold"),
     bg="#303747",
     fg="gold",
     width=10,
@@ -676,7 +750,7 @@ label_level.grid(
 label_cost = tk.Label(
     frame_stats,
     text="",
-    font=("Arial", 16, "bold"),
+    font=(FUENTE_UI, 16, "bold"),
     bg="#303747",
     fg="orange",
     width=10,
@@ -695,7 +769,7 @@ label_cost.grid(
 label_ap = tk.Label(
     frame_stats,
     text="",
-    font=("Arial", 16, "bold"),
+    font=(FUENTE_UI, 16, "bold"),
     bg="#303747",
     fg="red",
     width=10,
@@ -714,7 +788,7 @@ label_ap.grid(
 label_hp = tk.Label(
     frame_stats,
     text="",
-    font=("Arial", 16, "bold"),
+    font=(FUENTE_UI, 16, "bold"),
     bg="#303747",
     fg="lime",
     width=10,
@@ -733,7 +807,7 @@ label_hp.grid(
 label_effect = tk.Label(
     frame_datos,
     text="",
-    font=("Arial", 16),
+    font=(FUENTE_UI, 16),
     justify="left",
     wraplength=350,
     bg="#0b0f16",
