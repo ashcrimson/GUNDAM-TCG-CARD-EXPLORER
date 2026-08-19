@@ -24,6 +24,28 @@ def ejecutar_animacion(cartas):
 
     pygame.init()
 
+
+
+    RUTA_DISPARO = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "sonidos",
+        "disparo.wav"
+    )
+
+    RUTA_EXPLOSION = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "sonidos",
+        "explosion.wav"
+    )
+
+    sonido_disparo = pygame.mixer.Sound(
+        RUTA_DISPARO
+    )
+
+    sonido_explosion = pygame.mixer.Sound(
+        RUTA_EXPLOSION
+    )
+
     fuente_ui = pygame.font.Font(
         RUTA_FUENTE,
         32
@@ -39,6 +61,52 @@ def ejecutar_animacion(cartas):
 
     pantalla = pygame.display.set_mode(
         (ANCHO, ALTO)
+    )
+
+    # =====================================================
+    # SPRITESHEET DEL GUNDAM
+    # =====================================================
+
+    ruta_sprite = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "sprites",
+        "spritesheet.png"
+    )
+
+    spritesheet = pygame.image.load(
+        ruta_sprite
+    ).convert_alpha()
+
+    frames_gundam = []
+
+    frames_gundam.append(
+        spritesheet.subsurface(
+            pygame.Rect(0, 0, 512, 360)
+        )
+    )
+
+    frames_gundam.append(
+        spritesheet.subsurface(
+            pygame.Rect(512, 0, 512, 360)
+        )
+    )
+
+    frames_gundam.append(
+        spritesheet.subsurface(
+            pygame.Rect(1024, 0, 512, 360)
+        )
+    )
+
+    frames_gundam.append(
+        spritesheet.subsurface(
+            pygame.Rect(0, 440, 512, 300)
+        )
+    )
+
+    frames_gundam.append(
+        spritesheet.subsurface(
+            pygame.Rect(512, 440, 512, 300)
+        )
     )
 
     pygame.display.set_caption(
@@ -274,368 +342,37 @@ def ejecutar_animacion(cartas):
             })
 
     # =====================================================
-    # GUNDAM
+    # GUNDAM SPRITE
     # =====================================================
 
     def dibujar_gundam():
 
-        x = gundam_x
-        y = gundam_y
+        if estado == APUNTANDO:
 
-        BLANCO_G = (245, 245, 220)
-        SOMBRA = (190, 190, 175)
-        AZUL = (45, 75, 150)
-        AZUL_OSCURO = (30, 45, 100)
-        ROJO_G = (170, 45, 40)
-        AMARILLO_G = (220, 180, 45)
-        NEGRO = (25, 25, 30)
+            frame = frames_gundam[1]
 
-        # ---------------------------------------------
-        # ANTENAS
-        # ---------------------------------------------
+        elif estado == DISPARANDO:
 
-        pygame.draw.polygon(
-            pantalla,
-            AMARILLO_G,
-            [
-                (x - 14, y - 118),
-                (x - 28, y - 140),
-                (x - 23, y - 143),
-                (x - 8, y - 122)
-            ]
+            frame = frames_gundam[2]
+
+        elif estado == IMPACTO:
+
+            frame = frames_gundam[3]
+
+        else:
+
+            frame = frames_gundam[0]
+
+        sprite = pygame.transform.scale(
+            frame,
+            (300, 300)
         )
 
-        pygame.draw.polygon(
-            pantalla,
-            AMARILLO_G,
-            [
-                (x + 14, y - 118),
-                (x + 28, y - 140),
-                (x + 23, y - 143),
-                (x + 8, y - 122)
-            ]
-        )
-
-        # ---------------------------------------------
-        # CABEZA
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
+        pantalla.blit(
+            sprite,
             (
-                x - 25,
-                y - 125,
-                50,
-                45
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x + 15,
-                y - 120,
-                10,
-                35
-            )
-        )
-
-        # ---------------------------------------------
-        # VISERA
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL_OSCURO,
-            (
-                x - 18,
-                y - 112,
-                36,
-                10
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL,
-            (
-                x - 12,
-                y - 109,
-                24,
-                5
-            )
-        )
-
-        # ---------------------------------------------
-        # BARBILLA
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            ROJO_G,
-            (
-                x - 8,
-                y - 87,
-                16,
-                8
-            )
-        )
-
-        # ---------------------------------------------
-        # CUERPO
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x - 38,
-                y - 78,
-                76,
-                80
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x + 25,
-                y - 70,
-                13,
-                65
-            )
-        )
-
-        # ---------------------------------------------
-        # PECHERA
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL,
-            (
-                x - 25,
-                y - 68,
-                50,
-                30
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL_OSCURO,
-            (
-                x - 8,
-                y - 68,
-                16,
-                30
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            AMARILLO_G,
-            (
-                x - 7,
-                y - 38,
-                14,
-                10
-            )
-        )
-
-        # ---------------------------------------------
-        # BRAZO IZQUIERDO
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x - 65,
-                y - 65,
-                27,
-                55
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x - 72,
-                y - 58,
-                20,
-                30
-            )
-        )
-
-        # ---------------------------------------------
-        # BRAZO DERECHO
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x + 38,
-                y - 65,
-                70,
-                22
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x + 55,
-                y - 62,
-                60,
-                16
-            )
-        )
-
-        # ---------------------------------------------
-        # MANO
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x + 105,
-                y - 68,
-                22,
-                28
-            )
-        )
-
-        # ---------------------------------------------
-        # RIFLE
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            NEGRO,
-            (
-                x + 118,
-                y - 65,
-                55,
-                13
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL_OSCURO,
-            (
-                x + 125,
-                y - 70,
-                30,
-                7
-            )
-        )
-
-        # ---------------------------------------------
-        # CINTURA
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            ROJO_G,
-            (
-                x - 35,
-                y,
-                70,
-                20
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x - 20,
-                y,
-                40,
-                15
-            )
-        )
-
-        # ---------------------------------------------
-        # PIERNAS
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x - 32,
-                y + 18,
-                25,
-                70
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x - 12,
-                y + 20,
-                10,
-                60
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            BLANCO_G,
-            (
-                x + 7,
-                y + 18,
-                25,
-                70
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            SOMBRA,
-            (
-                x + 22,
-                y + 20,
-                10,
-                60
-            )
-        )
-
-        # ---------------------------------------------
-        # PIES
-        # ---------------------------------------------
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL_OSCURO,
-            (
-                x - 40,
-                y + 80,
-                35,
-                13
-            )
-        )
-
-        pygame.draw.rect(
-            pantalla,
-            AZUL_OSCURO,
-            (
-                x + 5,
-                y + 80,
-                35,
-                13
+                gundam_x - 150,
+                gundam_y - 150
             )
         )
 
@@ -1018,6 +755,7 @@ def ejecutar_animacion(cartas):
         if estado == APUNTANDO:
 
             if tiempo_estado >= 40:
+                sonido_disparo.play()
 
                 estado = DISPARANDO
                 tiempo_estado = 0
@@ -1034,8 +772,9 @@ def ejecutar_animacion(cartas):
         elif estado == IMPACTO:
 
             if tiempo_estado >= 20:
-
                 crear_explosion()
+
+                sonido_explosion.play()
 
                 estado = EXPLOSION
                 tiempo_estado = 0

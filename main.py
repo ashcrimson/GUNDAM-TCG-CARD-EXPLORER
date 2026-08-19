@@ -383,6 +383,7 @@ ventana.geometry("1400x900")
 ventana.configure(bg="#151922")
 
 
+
 # Frame para el buscador
 frame_busqueda = tk.Frame(
     ventana,
