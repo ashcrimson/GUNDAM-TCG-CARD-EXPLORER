@@ -1,0 +1,32 @@
+{
+    "ST09-008": {
+        "card_number": "ST09-008",
+        "name": "Shinn Asuka",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-075": {
+        "card_number": "GD01-075",
+        "name": "Darilbalde",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD05-122": {
+        "card_number": "GD05-122",
+        "name": "Graviton Hammer",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-040": {
+        "card_number": "GD01-040",
+        "name": "Wing Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-035": {
+        "card_number": "GD01-035",
+        "name": "Zaku Ⅱ",
+        "rarity": "C",
+        "quantity": 1
+    }
+}
