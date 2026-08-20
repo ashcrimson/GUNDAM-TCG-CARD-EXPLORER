@@ -52,5 +52,65 @@
         "name": "Dramatic Turnabout",
         "rarity": "R",
         "quantity": 1
+    },
+    "GD01-083": {
+        "card_number": "GD01-083",
+        "name": "Guel's Dilanza",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-008": {
+        "card_number": "R-008",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-107": {
+        "card_number": "GD04-107",
+        "name": "Destined Battle",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-018": {
+        "card_number": "EB01-018",
+        "name": "Gundam Astray Blue Frame Second L",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-002": {
+        "card_number": "GD02-002",
+        "name": "Gundam Epyon",
+        "rarity": "LR",
+        "quantity": 1
+    },
+    "GD01-068": {
+        "card_number": "GD01-068",
+        "name": "Perfect Strike Gundam",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "EB01-053": {
+        "card_number": "EB01-053",
+        "name": "Gundam GP00",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-013": {
+        "card_number": "R-013",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-108": {
+        "card_number": "GD02-108",
+        "name": "That One Looks A Lot Stronger?",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "EB01-033": {
+        "card_number": "EB01-033",
+        "name": "Taurus (Sanc Kingdom)",
+        "rarity": "C",
+        "quantity": 1
     }
 }

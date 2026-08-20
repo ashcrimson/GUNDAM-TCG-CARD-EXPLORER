@@ -25,7 +25,4 @@ def abrir_sobre(ventana, cartas_por_tipo):
     # ==========================================
 
     for carta in cartas_obtenidas:
-
-        agregar_carta(
-            carta["card_number"]
-        )
+        agregar_carta(carta)

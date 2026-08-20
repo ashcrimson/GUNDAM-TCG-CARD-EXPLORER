@@ -27,10 +27,6 @@ def ejecutar_animacion(todas_las_cartas):
     pygame.init()
     rng = random.SystemRandom()
 
-    def ejecutar_animacion(todas_las_cartas):
-
-        pygame.init()
-        rng = random.SystemRandom()
     # =====================================================
     # MÚSICA DEL GACHA
     # =====================================================
