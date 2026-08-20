@@ -8,7 +8,6 @@ import os
 import sys
 import random
 
-
 from sobres import abrir_sobre
 from coleccion import abrir_coleccion
 from musica import reproducir_musica
@@ -25,6 +24,7 @@ from cartas import (
 
 )
 from cache import cache, precargar
+from inventario import cargar_inventario
 from imagenes import descargar_imagen
 from ui import (
     actualizar_labels,
@@ -342,6 +342,49 @@ cargar_cartas_tipo("PILOT")
 cargar_cartas_tipo("COMMAND")
 cargar_cartas_tipo("BASE")
 cargar_cartas_tipo("RESOURCE")
+
+# =====================================================
+# CARTAS COMPLETAS PARA EL GACHA
+# =====================================================
+
+cartas_para_gacha = {
+    tipo: list(cartas)
+    for tipo, cartas in cartas_por_tipo.items()
+}
+
+
+# =====================================================
+# CARGAR COLECCIÓN DEL JUGADOR
+# =====================================================
+
+def actualizar_coleccion():
+
+    inventario = cargar_inventario()
+
+    for tipo in cartas_por_tipo:
+
+        cartas_por_tipo[tipo] = [
+            carta
+            for carta in cartas_para_gacha[tipo]
+            if carta["card_number"] in inventario
+        ]
+
+
+actualizar_coleccion()
+inventario = cargar_inventario()
+
+print("========== INVENTARIO ==========")
+
+for numero in inventario:
+    print(numero)
+
+print("================================")
+
+print("UNIT:", len(cartas_por_tipo["UNIT"]))
+print("PILOT:", len(cartas_por_tipo["PILOT"]))
+print("COMMAND:", len(cartas_por_tipo["COMMAND"]))
+print("BASE:", len(cartas_por_tipo["BASE"]))
+print("RESOURCE:", len(cartas_por_tipo["RESOURCE"]))
 print("UNIT:", len(cartas_por_tipo["UNIT"]))
 print("PILOT:", len(cartas_por_tipo["PILOT"]))
 print("COMMAND:", len(cartas_por_tipo["COMMAND"]))
@@ -383,6 +426,27 @@ ventana.geometry("1400x900")
 ventana.configure(bg="#151922")
 
 
+# -----------------------------------------------------
+# FONDO
+# -----------------------------------------------------
+
+imagen_fondo = Image.open("imagenes/hangar.jpg")
+imagen_fondo = imagen_fondo.resize((1400, 900))
+
+fondo = ImageTk.PhotoImage(imagen_fondo)
+
+label_fondo = tk.Label(
+    ventana,
+    image=fondo,
+    borderwidth=0
+)
+
+label_fondo.place(
+    x=0,
+    y=0,
+    relwidth=1,
+    relheight=1
+)
 
 # Frame para el buscador
 frame_busqueda = tk.Frame(
@@ -488,13 +552,33 @@ boton.bind(
     boton_salir
 )
 
+def abrir_sobre_y_actualizar():
+
+    abrir_sobre(
+        ventana,
+        cartas_para_gacha
+    )
+
+    actualizar_coleccion()
+
+    # Mostrar la primera carta disponible
+    tipo = menu_tipo.get()
+
+    if cartas_por_tipo[tipo]:
+
+        carta = cartas_por_tipo[tipo][0]
+
+        entrada.delete(0, tk.END)
+        entrada.insert(0, carta["card_number"])
+
+        buscar(carta["card_number"])
+
+    actualizar_botones()
+
 boton_sobre = tk.Button(
     frame_busqueda,
     text="🎁 ABRIR SOBRE",
-    command=lambda: abrir_sobre(
-        ventana,
-        cartas_por_tipo
-    ),
+    command=abrir_sobre_y_actualizar,
     font=(FUENTE_UI, 12, "bold"),
     bg="#252b38",
     fg="white",
@@ -567,23 +651,25 @@ configurar_hover(boton_coleccion)
 # )
 # boton_siguiente.pack(side="left", padx=5)
 
-# Frame que contiene imagen y datos
-frame_contenido = tk.Frame(
-    ventana,
-    bg="#151922"
-)
-frame_contenido.pack(pady=10)
+# =====================================================
+# CONTENIDO PRINCIPAL
+# =====================================================
 
-# Frame de la imagen
+# -----------------------------------------------------
+# NAVEGACIÓN Y CARTA
+# -----------------------------------------------------
+
 frame_navegacion = tk.Frame(
-    frame_contenido,
+    ventana,
     bg="#151922"
 )
 
 frame_navegacion.pack(
     side="left",
-    padx=30
+    padx=30,
+    pady=10
 )
+
 
 boton_anterior = tk.Button(
     frame_navegacion,
@@ -608,26 +694,42 @@ boton_anterior.pack(
 
 configurar_hover(boton_anterior)
 
+
+# -----------------------------------------------------
+# ÁREA DE LA CARTA
+# -----------------------------------------------------
+
 frame_imagen = tk.Frame(
     frame_navegacion,
     bg="#151922",
     width=500,
-    height=700
+    height=700,
+    highlightthickness=0,
+    bd=0
 )
 
-frame_imagen.pack(side="left")
+frame_imagen.pack(
+    side="left"
+)
 
 frame_imagen.pack_propagate(False)
 
+
 imagen_carta = tk.Label(
     frame_imagen,
-    bg="#151922"
+    bg="#151922",
+    borderwidth=0
 )
 
 imagen_carta.place(
     x=0,
     y=0
 )
+
+
+# -----------------------------------------------------
+# BOTÓN SIGUIENTE
+# -----------------------------------------------------
 
 boton_siguiente = tk.Button(
     frame_navegacion,
@@ -652,9 +754,13 @@ boton_siguiente.pack(
 
 configurar_hover(boton_siguiente)
 
-# Frame de los datos
+
+# =====================================================
+# DATOS DE LA CARTA
+# =====================================================
+
 frame_borde = tk.Frame(
-    frame_contenido,
+    ventana,
     bg="#151922",
     padx=0,
     pady=0
@@ -662,7 +768,8 @@ frame_borde = tk.Frame(
 
 frame_borde.pack(
     side="left",
-    padx=30
+    padx=30,
+    pady=10
 )
 
 frame_datos = tk.Frame(
@@ -817,12 +924,44 @@ label_effect = tk.Label(
 
 label_effect.pack(anchor="w", pady=15)
 
-entrada.insert(0, "GD01-001")
-buscar("GD01-001")
+# =====================================================
+# INICIO DE LA COLECCIÓN
+# =====================================================
+
+inventario = cargar_inventario()
+
+if inventario:
+
+    tipo = menu_tipo.get()
+
+    if cartas_por_tipo[tipo]:
+
+        carta = cartas_por_tipo[tipo][0]
+
+        entrada.insert(
+            0,
+            carta["card_number"]
+        )
+
+        buscar(
+            carta["card_number"]
+        )
+
+else:
+
+    print("Jugador nuevo: no tiene cartas.")
+
 actualizar_botones()
 ventana.focus_set()
 
 reproducir_musica()
+
+if not inventario:
+
+    ventana.after(
+        500,
+        abrir_sobre_y_actualizar
+    )
 
 ventana.bind(
     "<Left>",

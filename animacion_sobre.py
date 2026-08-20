@@ -2,10 +2,12 @@ import pygame
 import random
 import math
 import os
+import threading
 
 from PIL import Image
 
 from cache import cache, precargar
+from musica import reproducir_musica
 
 RUTA_FUENTE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -20,9 +22,42 @@ RUTA_FUENTE_BOLD = os.path.join(
 )
 
 
-def ejecutar_animacion(cartas):
+def ejecutar_animacion(todas_las_cartas):
 
     pygame.init()
+    rng = random.SystemRandom()
+
+    def ejecutar_animacion(todas_las_cartas):
+
+        pygame.init()
+        rng = random.SystemRandom()
+    # =====================================================
+    # MÚSICA DEL GACHA
+    # =====================================================
+
+    RUTA_MUSICA_GACHA = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "sonidos",
+        "musica_gacha.mp3"
+    )
+
+    pygame.mixer.music.load(
+        RUTA_MUSICA_GACHA
+    )
+
+    pygame.mixer.music.set_volume(0.8)
+
+    pygame.mixer.music.play(-1)
+
+    # =====================================================
+    # FONDO ESPACIAL
+    # =====================================================
+
+    RUTA_FONDO = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "imagenes",
+        "espacio.webp"
+    )
 
 
 
@@ -40,6 +75,16 @@ def ejecutar_animacion(cartas):
 
     sonido_disparo = pygame.mixer.Sound(
         RUTA_DISPARO
+    )
+
+    RUTA_BOOST = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "sonidos",
+        "boost.wav"
+    )
+
+    sonido_boost = pygame.mixer.Sound(
+        RUTA_BOOST
     )
 
     sonido_explosion = pygame.mixer.Sound(
@@ -61,6 +106,22 @@ def ejecutar_animacion(cartas):
 
     pantalla = pygame.display.set_mode(
         (ANCHO, ALTO)
+    )
+
+    # Cargar fondo espacial
+    fondo_original = Image.open(
+        RUTA_FONDO
+    ).convert("RGB")
+
+    fondo_original = fondo_original.resize(
+        (ANCHO, ALTO),
+        Image.Resampling.LANCZOS
+    )
+
+    fondo_espacio = pygame.image.fromstring(
+        fondo_original.tobytes(),
+        fondo_original.size,
+        fondo_original.mode
     )
 
     # =====================================================
@@ -116,6 +177,26 @@ def ejecutar_animacion(cartas):
     reloj = pygame.time.Clock()
 
     # =====================================================
+    # SOBRE
+    # =====================================================
+
+    ruta_sobre = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "imagenes",
+        "sobre.jpg"
+    )
+
+    sobre_original = pygame.image.load(
+        ruta_sobre
+    ).convert()
+
+    sobre = pygame.transform.smoothscale(
+        sobre_original,
+        (180, 250)
+    )
+
+
+    # =====================================================
     # COLORES
     # =====================================================
 
@@ -128,17 +209,19 @@ def ejecutar_animacion(cartas):
     # ESTADOS
     # =====================================================
 
-    APUNTANDO = 0
-    DISPARANDO = 1
-    IMPACTO = 2
-    EXPLOSION = 3
-    CARTA_PEQUENA = 4
-    CARTA_GRANDE = 5
-    RETIRAR_CARTA = 6
-    RESULTADOS = 7
+    ENTRADA = 0
+    APUNTANDO = 1
+    DISPARANDO = 2
+    IMPACTO = 3
+    EXPLOSION = 4
+    CARTA_PEQUENA = 5
+    CARTA_GRANDE = 6
+    RETIRAR_CARTA = 7
+    RESULTADOS = 8
 
-    estado = APUNTANDO
+    estado = ENTRADA
     tiempo_estado = 0
+    sonido_boost.play(-1)
 
     # =====================================================
     # CARTAS
@@ -147,19 +230,31 @@ def ejecutar_animacion(cartas):
     indice_carta = 0
 
     carta_actual = None
+    carta_candidata = None
     numero_carta = None
     rareza = None
     imagen_carta = None
 
     imagenes_resultado = []
 
+    cartas_obtenidas = []
+
     nivel_explosion = 1
+
+    # Tiempo hasta el próximo cambio de la ruleta
+    tiempo_ruleta = 0
+
+    # Próximo intervalo aleatorio
+    proximo_cambio_ruleta = rng.randint(
+        3,
+        15
+    )
 
     # =====================================================
     # POSICIONES
     # =====================================================
 
-    gundam_x = 180
+    gundam_x = -150
     gundam_y = 420
 
     caja_x = 700
@@ -180,6 +275,26 @@ def ejecutar_animacion(cartas):
     )
 
     # =====================================================
+    # RULETA OCULTA
+    # =====================================================
+
+    def girar_ruleta():
+
+        nonlocal carta_candidata
+
+        carta_candidata = rng.choice(
+            todas_las_cartas
+        )
+
+        numero = carta_candidata["card_number"]
+
+        if numero not in cache:
+            threading.Thread(
+                target=precargar,
+                args=(numero,),
+                daemon=True
+            ).start()
+    # =====================================================
     # PREPARAR CARTA REAL
     # =====================================================
 
@@ -191,7 +306,7 @@ def ejecutar_animacion(cartas):
         nonlocal imagen_carta
         nonlocal nivel_explosion
 
-        carta_actual = cartas[indice_carta]
+        carta_actual = carta_candidata
 
         numero_carta = carta_actual["card_number"]
 
@@ -249,7 +364,7 @@ def ejecutar_animacion(cartas):
 
         imagenes_resultado = []
 
-        for carta in cartas:
+        for carta in cartas_obtenidas:
 
             numero = carta["card_number"]
 
@@ -347,7 +462,11 @@ def ejecutar_animacion(cartas):
 
     def dibujar_gundam():
 
-        if estado == APUNTANDO:
+        if estado == ENTRADA:
+
+            frame = frames_gundam[4]
+
+        elif estado == APUNTANDO:
 
             frame = frames_gundam[1]
 
@@ -375,74 +494,22 @@ def ejecutar_animacion(cartas):
                 gundam_y - 150
             )
         )
-
     # =====================================================
     # CAJA
     # =====================================================
 
     def dibujar_caja():
 
-        offset_x = 0
-
-        if estado == IMPACTO:
-
-            offset_x = random.randint(
-                -8,
-                8
-            )
-
-        x = caja_x + offset_x
-        y = caja_y
-
-        pygame.draw.rect(
-            pantalla,
-            (150, 100, 45),
-            (
-                x - 60,
-                y - 60,
-                120,
-                120
+        rect = sobre.get_rect(
+            center=(
+                caja_x,
+                caja_y
             )
         )
 
-        pygame.draw.rect(
-            pantalla,
-            (190, 135, 65),
-            (
-                x - 50,
-                y - 50,
-                100,
-                100
-            ),
-            5
-        )
-
-        pygame.draw.line(
-            pantalla,
-            (110, 70, 30),
-            (
-                x - 50,
-                y - 50
-            ),
-            (
-                x + 50,
-                y + 50
-            ),
-            8
-        )
-
-        pygame.draw.line(
-            pantalla,
-            (110, 70, 30),
-            (
-                x + 50,
-                y - 50
-            ),
-            (
-                x - 50,
-                y + 50
-            ),
-            8
+        pantalla.blit(
+            sobre,
+            rect
         )
 
     # =====================================================
@@ -711,7 +778,7 @@ def ejecutar_animacion(cartas):
     # PRIMERA CARTA
     # =====================================================
 
-    preparar_carta()
+    girar_ruleta()
 
     # =====================================================
     # LOOP PRINCIPAL
@@ -739,26 +806,72 @@ def ejecutar_animacion(cartas):
 
                     ejecutando = False
 
-                elif (
-                    evento.key == pygame.K_SPACE
-                    and estado == RESULTADOS
-                ):
+                elif evento.key == pygame.K_SPACE:
 
-                    ejecutando = False
+                    if estado == APUNTANDO:
+
+                        # =====================================
+                        # DETENER RULETA
+                        # =====================================
+
+                        preparar_carta()
+
+                        cartas_obtenidas.append(
+                            carta_actual
+                        )
+
+                        # =====================================
+                        # DISPARAR
+                        # =====================================
+
+                        sonido_disparo.play()
+
+                        estado = DISPARANDO
+                        tiempo_estado = 0
+
+                    elif estado == RESULTADOS:
+
+                        ejecutando = False
+
 
         tiempo_estado += 1
+
+        # =================================================
+        # RULETA OCULTA
+        # =================================================
+
+        if estado == APUNTANDO:
+
+            tiempo_ruleta += 1
+
+            if tiempo_ruleta >= proximo_cambio_ruleta:
+                girar_ruleta()
+
+                tiempo_ruleta = 0
+
+                proximo_cambio_ruleta = rng.randint(
+                    3,
+                    15
+                )
 
         # =================================================
         # ESTADOS
         # =================================================
 
-        if estado == APUNTANDO:
+        if estado == ENTRADA:
+
+            gundam_x += 8
+
+            if gundam_x >= 180:
+                gundam_x = 180
+                sonido_boost.stop()
+                estado = APUNTANDO
+                tiempo_estado = 0
+
+        elif estado == APUNTANDO:
 
             if tiempo_estado >= 40:
-                sonido_disparo.play()
-
-                estado = DISPARANDO
-                tiempo_estado = 0
+                pass
 
         elif estado == DISPARANDO:
 
@@ -825,7 +938,7 @@ def ejecutar_animacion(cartas):
                 # ¿TERMINARON LAS 5 CARTAS?
                 # -----------------------------------------
 
-                if indice_carta >= len(cartas):
+                if indice_carta >= 5:
 
                     preparar_resultados()
 
@@ -839,7 +952,15 @@ def ejecutar_animacion(cartas):
 
                     particulas.clear()
 
-                    preparar_carta()
+                    # Nueva ruleta para la siguiente carta
+                    tiempo_ruleta = 0
+
+                    proximo_cambio_ruleta = rng.randint(
+                        3,
+                        15
+                    )
+
+                    girar_ruleta()
 
                     estado = APUNTANDO
                     tiempo_estado = 0
@@ -848,60 +969,62 @@ def ejecutar_animacion(cartas):
         # DIBUJAR
         # =================================================
 
-        pantalla.fill(
-            FONDO
+        pantalla.blit(
+            fondo_espacio,
+            (0, 0)
         )
 
         # =================================================
         # REJILLA
         # =================================================
 
-        for x in range(
-            0,
-            ANCHO,
-            100
-        ):
-
-            pygame.draw.line(
-                pantalla,
-                (25, 32, 45),
-                (
-                    x,
-                    0
-                ),
-                (
-                    x,
-                    ALTO
-                )
-            )
-
-        for y in range(
-            0,
-            ALTO,
-            100
-        ):
-
-            pygame.draw.line(
-                pantalla,
-                (25, 32, 45),
-                (
-                    0,
-                    y
-                ),
-                (
-                    ANCHO,
-                    y
-                )
-            )
+        # for x in range(
+        #     0,
+        #     ANCHO,
+        #     100
+        # ):
+        #
+        #     pygame.draw.line(
+        #         pantalla,
+        #         (25, 32, 45),
+        #         (
+        #             x,
+        #             0
+        #         ),
+        #         (
+        #             x,
+        #             ALTO
+        #         )
+        #     )
+        #
+        # for y in range(
+        #     0,
+        #     ALTO,
+        #     100
+        # ):
+        #
+        #     pygame.draw.line(
+        #         pantalla,
+        #         (25, 32, 45),
+        #         (
+        #             0,
+        #             y
+        #         ),
+        #         (
+        #             ANCHO,
+        #             y
+        #         )
+        #     )
 
         # =================================================
         # ESCENA
         # =================================================
 
         if estado in (
-            APUNTANDO,
-            DISPARANDO,
-            IMPACTO
+                ENTRADA,
+                APUNTANDO,
+                DISPARANDO,
+                IMPACTO
         ):
 
             dibujar_gundam()
@@ -931,4 +1054,6 @@ def ejecutar_animacion(cartas):
 
         pygame.display.flip()
 
-    pygame.quit()
+    reproducir_musica()
+    pygame.display.quit()
+    return cartas_obtenidas
