@@ -112,5 +112,65 @@
         "name": "Taurus (Sanc Kingdom)",
         "rarity": "C",
         "quantity": 1
+    },
+    "R-005": {
+        "card_number": "R-005",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-044": {
+        "card_number": "EB01-044",
+        "name": "Justice Gundam (EX)",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "R-017": {
+        "card_number": "R-017",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-081": {
+        "card_number": "GD04-081",
+        "name": "Üso Ewin",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "R-023": {
+        "card_number": "R-023",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-013": {
+        "card_number": "EB01-013",
+        "name": "Red Gundam(0085)",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-017": {
+        "card_number": "GD01-017",
+        "name": "Stark Jegan",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-124": {
+        "card_number": "GD04-124",
+        "name": "9th Tactical Testing Sector",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "R-002": {
+        "card_number": "R-002",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "ST03-010": {
+        "card_number": "ST03-010",
+        "name": "Full Frontal",
+        "rarity": "C +",
+        "quantity": 1
     }
 }

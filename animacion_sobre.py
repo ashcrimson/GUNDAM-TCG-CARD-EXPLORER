@@ -856,7 +856,7 @@ def ejecutar_animacion(todas_las_cartas):
 
         if estado == ENTRADA:
 
-            gundam_x += 8
+            gundam_x += 3
 
             if gundam_x >= 180:
                 gundam_x = 180
