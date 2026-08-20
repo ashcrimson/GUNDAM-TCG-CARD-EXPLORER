@@ -172,5 +172,173 @@
         "name": "Full Frontal",
         "rarity": "C +",
         "quantity": 1
+    },
+    "GD05-098": {
+        "card_number": "GD05-098",
+        "name": "Heero Yuy",
+        "rarity": "R",
+        "quantity": 2
+    },
+    "GD01-065": {
+        "card_number": "GD01-065",
+        "name": "Freedom Gundam",
+        "rarity": "LR",
+        "quantity": 1
+    },
+    "EB01-090": {
+        "card_number": "EB01-090",
+        "name": "Tiffa Adill & Freeden",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-034": {
+        "card_number": "EB01-034",
+        "name": "Gundam Lfrith Ur",
+        "rarity": "C",
+        "quantity": 3
+    },
+    "RP-038": {
+        "card_number": "RP-038",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD03-086": {
+        "card_number": "GD03-086",
+        "name": "Yazan Gable",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "GD04-092": {
+        "card_number": "GD04-092",
+        "name": "Michael Trinity",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-006": {
+        "card_number": "EB01-006",
+        "name": "Gundam Astray Gold Frame Amatsu",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD04-096": {
+        "card_number": "GD04-096",
+        "name": "Ennil El",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "GD03-123": {
+        "card_number": "GD03-123",
+        "name": "Jupitris",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-097": {
+        "card_number": "GD01-097",
+        "name": "Guel Jeturk",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-032": {
+        "card_number": "GD01-032",
+        "name": "Gyan",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-051": {
+        "card_number": "GD01-051",
+        "name": "Kshatriya",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD02-128": {
+        "card_number": "GD02-128",
+        "name": "Hammerhead",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD04-110": {
+        "card_number": "GD04-110",
+        "name": "Financier",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-120": {
+        "card_number": "GD01-120",
+        "name": "Naval Bombardment",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "RP-063": {
+        "card_number": "RP-063",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD04-098": {
+        "card_number": "GD04-098",
+        "name": "Riddhe Marcenas",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-050": {
+        "card_number": "GD01-050",
+        "name": "LaGOWE",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "R-024": {
+        "card_number": "R-024",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 2
+    },
+    "ST05-014": {
+        "card_number": "ST05-014",
+        "name": "Fatal Strike",
+        "rarity": "C +",
+        "quantity": 1
+    },
+    "GD01-058": {
+        "card_number": "GD01-058",
+        "name": "Galluss-K",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-087": {
+        "card_number": "GD05-087",
+        "name": "Lauda Neill",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD05-085": {
+        "card_number": "GD05-085",
+        "name": "Amuro Ray",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "EB01-020": {
+        "card_number": "EB01-020",
+        "name": "Gundam Mk-Ⅲ",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD05-129": {
+        "card_number": "GD05-129",
+        "name": "Axis",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "EB01-016": {
+        "card_number": "EB01-016",
+        "name": "Tornado Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "EB01-047": {
+        "card_number": "EB01-047",
+        "name": "Casval's Gundam",
+        "rarity": "U",
+        "quantity": 1
     }
 }

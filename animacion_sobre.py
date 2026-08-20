@@ -237,6 +237,18 @@ def ejecutar_animacion(todas_las_cartas):
 
     nivel_explosion = 1
 
+    # =====================================================
+    # POOL DE CARTAS PRE-CARGADAS
+    # =====================================================
+
+    cartas_pool = []
+
+    for carta in rng.sample(
+            todas_las_cartas,
+            min(10, len(todas_las_cartas))
+    ):
+        cartas_pool.append(carta)
+
     # Tiempo hasta el próximo cambio de la ruleta
     tiempo_ruleta = 0
 
@@ -278,18 +290,23 @@ def ejecutar_animacion(todas_las_cartas):
 
         nonlocal carta_candidata
 
+        if not cartas_pool:
+            return
+
         carta_candidata = rng.choice(
-            todas_las_cartas
+            cartas_pool
         )
 
-        numero = carta_candidata["card_number"]
+    def precargar_pool():
 
-        if numero not in cache:
-            threading.Thread(
-                target=precargar,
-                args=(numero,),
-                daemon=True
-            ).start()
+        for carta in cartas_pool:
+
+            numero = carta["card_number"]
+
+            if numero in cache:
+                continue
+
+            precargar(numero)
     # =====================================================
     # PREPARAR CARTA REAL
     # =====================================================
@@ -307,6 +324,9 @@ def ejecutar_animacion(todas_las_cartas):
         numero_carta = carta_actual["card_number"]
 
         rareza = carta_actual["rarity"]
+        cartas_pool.remove(
+            carta_candidata
+        )
 
         # ---------------------------------------------
         # NIVEL DE EXPLOSIÓN SEGÚN RAREZA
@@ -771,6 +791,17 @@ def ejecutar_animacion(todas_las_cartas):
             )
 
     # =====================================================
+    # PRE-CARGAR POOL
+    # =====================================================
+
+    threading.Thread(
+        target=precargar_pool,
+        daemon=True
+    ).start()
+
+
+
+    # =====================================================
     # PRIMERA CARTA
     # =====================================================
 
@@ -1025,6 +1056,42 @@ def ejecutar_animacion(todas_las_cartas):
 
             dibujar_gundam()
             dibujar_caja()
+
+            def dibujar_indicacion():
+
+                if estado != APUNTANDO:
+                    return
+
+                # Parpadeo suave
+                alpha = int(
+                    140
+                    + 115 * (
+                            (math.sin(tiempo_estado * 0.12) + 1) / 2
+                    )
+                )
+
+                texto = fuente_ui_bold.render(
+                    "PRESIONA ESPACIO PARA DISPARAR",
+                    True,
+                    BLANCO
+                )
+
+                texto.set_alpha(alpha)
+
+                rect = texto.get_rect(
+                    center=(
+                        ANCHO // 2,
+                        ALTO - 50
+                    )
+                )
+
+                pantalla.blit(
+                    texto,
+                    rect
+                )
+
+            if estado == APUNTANDO:
+                dibujar_indicacion()
 
             if estado == DISPARANDO:
 
