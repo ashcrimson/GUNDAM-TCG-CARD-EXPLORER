@@ -376,6 +376,47 @@ cargar_cartas_tipo("BASE")
 cargar_cartas_tipo("RESOURCE")
 
 # =====================================================
+# REVISAR DUPLICADOS DEL CATÁLOGO
+# =====================================================
+
+print("========== DUPLICADOS ==========")
+
+for tipo in cartas_por_tipo:
+
+    vistos = set()
+    duplicados = []
+
+    for carta in cartas_por_tipo[tipo]:
+
+        numero = carta["card_number"]
+
+        if numero in vistos:
+            duplicados.append(numero)
+        else:
+            vistos.add(numero)
+
+    print()
+    print(tipo)
+    print("Total:", len(cartas_por_tipo[tipo]))
+    print("ÚNICAS:", len(vistos))
+    print("Duplicados:", len(duplicados))
+
+    if duplicados:
+        print("Ejemplos:", duplicados[:20])
+
+print("================================")
+
+
+# =====================================================
+# CARTAS COMPLETAS PARA EL GACHA
+# =====================================================
+
+cartas_para_gacha = {
+    tipo: list(cartas)
+    for tipo, cartas in cartas_por_tipo.items()
+}
+
+# =====================================================
 # CARTAS COMPLETAS PARA EL GACHA
 # =====================================================
 

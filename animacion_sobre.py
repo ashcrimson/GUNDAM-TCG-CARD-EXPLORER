@@ -238,16 +238,10 @@ def ejecutar_animacion(todas_las_cartas):
     nivel_explosion = 1
 
     # =====================================================
-    # POOL DE CARTAS PRE-CARGADAS
+    # POOL DE CARTAS
     # =====================================================
 
-    cartas_pool = []
-
-    for carta in rng.sample(
-            todas_las_cartas,
-            min(10, len(todas_las_cartas))
-    ):
-        cartas_pool.append(carta)
+    cartas_pool = list(todas_las_cartas)
 
     # Tiempo hasta el próximo cambio de la ruleta
     tiempo_ruleta = 0
@@ -324,9 +318,6 @@ def ejecutar_animacion(todas_las_cartas):
         numero_carta = carta_actual["card_number"]
 
         rareza = carta_actual["rarity"]
-        cartas_pool.remove(
-            carta_candidata
-        )
 
         # ---------------------------------------------
         # NIVEL DE EXPLOSIÓN SEGÚN RAREZA
@@ -349,7 +340,6 @@ def ejecutar_animacion(todas_las_cartas):
         # ---------------------------------------------
 
         if numero_carta not in cache:
-
             precargar(numero_carta)
 
         imagen_pil = cache[

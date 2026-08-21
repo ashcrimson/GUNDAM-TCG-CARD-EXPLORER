@@ -9,18 +9,20 @@ carta_actual = "GD01-001"
 
 
 def cargar_cartas_tipo(tipo):
-    datos = obtener_cartas_por_tipo(tipo)
 
-    cartas = {}
+    cartas = obtener_cartas_por_tipo(tipo)
 
-    for carta in datos:
+    cartas_unicas = {}
+
+    for carta in cartas:
         numero = carta["card_number"]
 
-        if numero not in cartas:
-            cartas[numero] = carta
+        if numero not in cartas_unicas:
+            cartas_unicas[numero] = carta
 
-    cartas_por_tipo[tipo] = list(cartas.values())
-
+    cartas_por_tipo[tipo] = list(
+        cartas_unicas.values()
+    )
 
 def cambiar_tipo(tipo):
     global tipo_actual, indice_actual, carta_actual

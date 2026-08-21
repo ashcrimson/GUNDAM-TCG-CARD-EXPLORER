@@ -1,218 +1,104 @@
 {
-    "GD02-127": {
-        "card_number": "GD02-127",
-        "name": "Freeden",
+    "EB01-016": {
+        "card_number": "EB01-016",
+        "name": "Tornado Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-034": {
+        "card_number": "GD01-034",
+        "name": "Gundam Heavyarms",
         "rarity": "U",
         "quantity": 1
     },
-    "GD01-024": {
-        "card_number": "GD01-024",
-        "name": "Wing Gundam Zero",
-        "rarity": "LR",
+    "GD01-071": {
+        "card_number": "GD01-071",
+        "name": "Gundam Pharact",
+        "rarity": "R",
         "quantity": 1
     },
-    "RP-031": {
-        "card_number": "RP-031",
-        "name": "Resource",
-        "rarity": "P",
-        "quantity": 1
-    },
-    "GD05-115": {
-        "card_number": "GD05-115",
-        "name": "Newtype Labs Director",
+    "GD01-091": {
+        "card_number": "GD01-091",
+        "name": "Chang Wufei",
         "rarity": "U",
         "quantity": 1
     },
-    "R-032": {
-        "card_number": "R-032",
-        "name": "Resource",
+    "ST04-011": {
+        "card_number": "ST04-011",
+        "name": "Athrun Zala",
         "rarity": "C",
         "quantity": 1
     },
-    "GD01-087": {
-        "card_number": "GD01-087",
-        "name": "Sayla Mass",
-        "rarity": "R",
-        "quantity": 2
-    },
-    "EB01-084": {
-        "card_number": "EB01-084",
-        "name": "30cm Cannon (APFSDS Round)",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD01-080": {
-        "card_number": "GD01-080",
-        "name": "Cagalli's Skygrasper",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD02-100": {
-        "card_number": "GD02-100",
-        "name": "Dramatic Turnabout",
+    "GD02-103": {
+        "card_number": "GD02-103",
+        "name": "AGE Device",
         "rarity": "R",
         "quantity": 1
     },
-    "GD01-083": {
-        "card_number": "GD01-083",
-        "name": "Guel's Dilanza",
+    "GD05-121": {
+        "card_number": "GD05-121",
+        "name": "Cyclone Punch",
         "rarity": "C",
         "quantity": 1
     },
-    "R-008": {
-        "card_number": "R-008",
-        "name": "Resource",
+    "ST06-009": {
+        "card_number": "ST06-009",
+        "name": "Amate Yuzuriha (Machu)",
         "rarity": "C",
         "quantity": 1
     },
-    "GD04-107": {
-        "card_number": "GD04-107",
-        "name": "Destined Battle",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "EB01-018": {
-        "card_number": "EB01-018",
-        "name": "Gundam Astray Blue Frame Second L",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD02-002": {
-        "card_number": "GD02-002",
-        "name": "Gundam Epyon",
-        "rarity": "LR",
-        "quantity": 1
-    },
-    "GD01-068": {
-        "card_number": "GD01-068",
-        "name": "Perfect Strike Gundam",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "EB01-053": {
-        "card_number": "EB01-053",
-        "name": "Gundam GP00",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "R-013": {
-        "card_number": "R-013",
-        "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD02-108": {
-        "card_number": "GD02-108",
-        "name": "That One Looks A Lot Stronger?",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "EB01-033": {
-        "card_number": "EB01-033",
-        "name": "Taurus (Sanc Kingdom)",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "R-005": {
-        "card_number": "R-005",
-        "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "EB01-044": {
-        "card_number": "EB01-044",
-        "name": "Justice Gundam (EX)",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "R-017": {
-        "card_number": "R-017",
-        "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD04-081": {
-        "card_number": "GD04-081",
-        "name": "Üso Ewin",
+    "GD02-091": {
+        "card_number": "GD02-091",
+        "name": "Haman Karn",
         "rarity": "R",
         "quantity": 1
     },
     "R-023": {
         "card_number": "R-023",
         "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "EB01-013": {
-        "card_number": "EB01-013",
-        "name": "Red Gundam(0085)",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD01-017": {
-        "card_number": "GD01-017",
-        "name": "Stark Jegan",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD04-124": {
-        "card_number": "GD04-124",
-        "name": "9th Tactical Testing Sector",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "R-002": {
-        "card_number": "R-002",
-        "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "ST03-010": {
-        "card_number": "ST03-010",
-        "name": "Full Frontal",
         "rarity": "C +",
-        "quantity": 2
+        "quantity": 1
     },
-    "GD05-098": {
-        "card_number": "GD05-098",
-        "name": "Heero Yuy",
+    "GD04-101": {
+        "card_number": "GD04-101",
+        "name": "Kindhearted",
         "rarity": "R",
-        "quantity": 2
-    },
-    "GD01-065": {
-        "card_number": "GD01-065",
-        "name": "Freedom Gundam",
-        "rarity": "LR",
         "quantity": 1
     },
-    "EB01-090": {
-        "card_number": "EB01-090",
-        "name": "Tiffa Adill & Freeden",
-        "rarity": "C",
-        "quantity": 3
-    },
-    "EB01-034": {
-        "card_number": "EB01-034",
-        "name": "Gundam Lfrith Ur",
-        "rarity": "C",
-        "quantity": 3
-    },
-    "RP-038": {
-        "card_number": "RP-038",
-        "name": "Resource",
-        "rarity": "P",
+    "GD01-115": {
+        "card_number": "GD01-115",
+        "name": "Zeon Remnant Forces",
+        "rarity": "U",
         "quantity": 1
     },
-    "GD03-086": {
-        "card_number": "GD03-086",
-        "name": "Yazan Gable",
+    "ST10-012": {
+        "card_number": "ST10-012",
+        "name": "Mark Guilder",
         "rarity": "C",
-        "quantity": 2
+        "quantity": 1
     },
-    "GD04-092": {
-        "card_number": "GD04-092",
-        "name": "Michael Trinity",
+    "ST02-015": {
+        "card_number": "ST02-015",
+        "name": "Saint Gabriel Institute",
         "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-100": {
+        "card_number": "GD01-100",
+        "name": "A Show of Resolve",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD03-088": {
+        "card_number": "GD03-088",
+        "name": "Asemu Asuno",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD04-087": {
+        "card_number": "GD04-087",
+        "name": "Elan Ceres (Enhanced Person Number 5)",
+        "rarity": "U",
         "quantity": 1
     },
     "EB01-006": {
@@ -221,219 +107,15 @@
         "rarity": "U",
         "quantity": 1
     },
-    "GD04-096": {
-        "card_number": "GD04-096",
-        "name": "Ennil El",
-        "rarity": "C",
-        "quantity": 2
-    },
-    "GD03-123": {
-        "card_number": "GD03-123",
-        "name": "Jupitris",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD01-097": {
-        "card_number": "GD01-097",
-        "name": "Guel Jeturk",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD01-032": {
-        "card_number": "GD01-032",
-        "name": "Gyan",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD01-051": {
-        "card_number": "GD01-051",
-        "name": "Kshatriya",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD02-128": {
-        "card_number": "GD02-128",
-        "name": "Hammerhead",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD04-110": {
-        "card_number": "GD04-110",
-        "name": "Financier",
-        "rarity": "U",
-        "quantity": 2
-    },
-    "GD01-120": {
-        "card_number": "GD01-120",
-        "name": "Naval Bombardment",
-        "rarity": "C",
-        "quantity": 2
-    },
-    "RP-063": {
-        "card_number": "RP-063",
-        "name": "Resource",
-        "rarity": "P",
-        "quantity": 1
-    },
-    "GD04-098": {
-        "card_number": "GD04-098",
-        "name": "Riddhe Marcenas",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD01-050": {
-        "card_number": "GD01-050",
-        "name": "LaGOWE",
-        "rarity": "R",
-        "quantity": 1
-    },
     "R-024": {
         "card_number": "R-024",
         "name": "Resource",
-        "rarity": "C",
-        "quantity": 2
-    },
-    "ST05-014": {
-        "card_number": "ST05-014",
-        "name": "Fatal Strike",
-        "rarity": "C +",
-        "quantity": 1
-    },
-    "GD01-058": {
-        "card_number": "GD01-058",
-        "name": "Galluss-K",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD05-087": {
-        "card_number": "GD05-087",
-        "name": "Lauda Neill",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD05-085": {
-        "card_number": "GD05-085",
-        "name": "Amuro Ray",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "EB01-020": {
-        "card_number": "EB01-020",
-        "name": "Gundam Mk-Ⅲ",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD05-129": {
-        "card_number": "GD05-129",
-        "name": "Axis",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "EB01-016": {
-        "card_number": "EB01-016",
-        "name": "Tornado Gundam",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "EB01-047": {
-        "card_number": "EB01-047",
-        "name": "Casval's Gundam",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "R-040": {
-        "card_number": "R-040",
-        "name": "Resource",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD03-110": {
-        "card_number": "GD03-110",
-        "name": "Eliminate Target",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD01-056": {
-        "card_number": "GD01-056",
-        "name": "Geara Doga (Sleeves)",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD01-052": {
-        "card_number": "GD01-052",
-        "name": "Geara Zulu (Guards Type)",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "RP-033": {
-        "card_number": "RP-033",
-        "name": "Resource",
-        "rarity": "P",
-        "quantity": 1
-    },
-    "RP-061": {
-        "card_number": "RP-061",
-        "name": "Resource",
-        "rarity": "P",
-        "quantity": 1
-    },
-    "GD01-101": {
-        "card_number": "GD01-101",
-        "name": "Deep Devotion",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD01-090": {
-        "card_number": "GD01-090",
-        "name": "Duo Maxwell",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD01-007": {
-        "card_number": "GD01-007",
-        "name": "Noin's Aries",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD01-064": {
-        "card_number": "GD01-064",
-        "name": "DINN",
         "rarity": "C",
         "quantity": 1
     },
     "GD02-094": {
         "card_number": "GD02-094",
         "name": "Garrod Ran & Tiffa Adill",
-        "rarity": "R",
-        "quantity": 1
-    },
-    "GD02-118": {
-        "card_number": "GD02-118",
-        "name": "Heart Set on Revenge",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD01-127": {
-        "card_number": "GD01-127",
-        "name": "Gamow",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD04-125": {
-        "card_number": "GD04-125",
-        "name": "Trinity Warship",
-        "rarity": "U",
-        "quantity": 1
-    },
-    "GD01-041": {
-        "card_number": "GD01-041",
-        "name": "Shenlong Gundam",
-        "rarity": "C",
-        "quantity": 1
-    },
-    "GD02-091": {
-        "card_number": "GD02-091",
-        "name": "Haman Karn",
         "rarity": "R",
         "quantity": 1
     }
