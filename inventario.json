@@ -171,7 +171,7 @@
         "card_number": "ST03-010",
         "name": "Full Frontal",
         "rarity": "C +",
-        "quantity": 1
+        "quantity": 2
     },
     "GD05-098": {
         "card_number": "GD05-098",
@@ -189,7 +189,7 @@
         "card_number": "EB01-090",
         "name": "Tiffa Adill & Freeden",
         "rarity": "C",
-        "quantity": 1
+        "quantity": 3
     },
     "EB01-034": {
         "card_number": "EB01-034",
@@ -261,7 +261,7 @@
         "card_number": "GD04-110",
         "name": "Financier",
         "rarity": "U",
-        "quantity": 1
+        "quantity": 2
     },
     "GD01-120": {
         "card_number": "GD01-120",
@@ -339,6 +339,102 @@
         "card_number": "EB01-047",
         "name": "Casval's Gundam",
         "rarity": "U",
+        "quantity": 1
+    },
+    "R-040": {
+        "card_number": "R-040",
+        "name": "Resource",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD03-110": {
+        "card_number": "GD03-110",
+        "name": "Eliminate Target",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-056": {
+        "card_number": "GD01-056",
+        "name": "Geara Doga (Sleeves)",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD01-052": {
+        "card_number": "GD01-052",
+        "name": "Geara Zulu (Guards Type)",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "RP-033": {
+        "card_number": "RP-033",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "RP-061": {
+        "card_number": "RP-061",
+        "name": "Resource",
+        "rarity": "P",
+        "quantity": 1
+    },
+    "GD01-101": {
+        "card_number": "GD01-101",
+        "name": "Deep Devotion",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-090": {
+        "card_number": "GD01-090",
+        "name": "Duo Maxwell",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-007": {
+        "card_number": "GD01-007",
+        "name": "Noin's Aries",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD01-064": {
+        "card_number": "GD01-064",
+        "name": "DINN",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-094": {
+        "card_number": "GD02-094",
+        "name": "Garrod Ran & Tiffa Adill",
+        "rarity": "R",
+        "quantity": 1
+    },
+    "GD02-118": {
+        "card_number": "GD02-118",
+        "name": "Heart Set on Revenge",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-127": {
+        "card_number": "GD01-127",
+        "name": "Gamow",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD04-125": {
+        "card_number": "GD04-125",
+        "name": "Trinity Warship",
+        "rarity": "U",
+        "quantity": 1
+    },
+    "GD01-041": {
+        "card_number": "GD01-041",
+        "name": "Shenlong Gundam",
+        "rarity": "C",
+        "quantity": 1
+    },
+    "GD02-091": {
+        "card_number": "GD02-091",
+        "name": "Haman Karn",
+        "rarity": "R",
         "quantity": 1
     }
 }

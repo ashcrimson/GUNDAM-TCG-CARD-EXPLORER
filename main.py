@@ -23,9 +23,9 @@ from cartas import (
     obtener_tipo_actual
 
 )
-from cache import cache, precargar
+
 from inventario import cargar_inventario
-from imagenes import descargar_imagen
+from cache import cache, precargar, cargar_imagen_local
 from ui import (
     actualizar_labels,
     actualizar_contador
@@ -66,7 +66,7 @@ def buscar(numero=None):
 
             carta = obtener_carta(numero)
 
-            imagen = descargar_imagen(carta["image_url"])
+            imagen = cargar_imagen_local(numero)
 
             cache[numero] = {
                 "carta": carta,
@@ -82,6 +82,7 @@ def buscar(numero=None):
         # ==========================================
         # ACTUALIZAR DATOS DE LA CARTA
         # ==========================================
+
         actualizar_labels(
             carta,
             label_codigo,
@@ -95,18 +96,26 @@ def buscar(numero=None):
             label_hp,
             label_effect
         )
+
         # ==========================================
         # MOSTRAR IMAGEN GRANDE
         # ==========================================
 
-        imagen_grande = imagen.resize(
-            (imagen.width * 2, imagen.height * 2),
+        imagen_grande = imagen.copy()
+
+        imagen_grande.thumbnail(
+            (500, 700),
             Image.Resampling.LANCZOS
         )
 
-        imagen_tk = ImageTk.PhotoImage(imagen_grande)
+        imagen_tk = ImageTk.PhotoImage(
+            imagen_grande
+        )
 
-        imagen_carta.config(image=imagen_tk)
+        imagen_carta.config(
+            image=imagen_tk
+        )
+
         imagen_carta.image = imagen_tk
 
         # ==========================================
@@ -126,14 +135,28 @@ def buscar(numero=None):
             indice_actual,
             total_cartas
         )
+
         actualizar_botones()
 
         for i in range(1, 4):
-            indice_precargar = indice_actual + i
 
-            if indice_precargar < len(cartas_por_tipo[menu_tipo.get()]):
-                carta_precargar = cartas_por_tipo[menu_tipo.get()][indice_precargar]
-                numero_precargar = carta_precargar["card_number"]
+            indice_precargar = (
+                indice_actual + i
+            )
+
+            if indice_precargar < len(
+                cartas_por_tipo[menu_tipo.get()]
+            ):
+
+                carta_precargar = (
+                    cartas_por_tipo[
+                        menu_tipo.get()
+                    ][indice_precargar]
+                )
+
+                numero_precargar = (
+                    carta_precargar["card_number"]
+                )
 
                 threading.Thread(
                     target=precargar,
@@ -141,10 +164,17 @@ def buscar(numero=None):
                     daemon=True
                 ).start()
 
-    except (KeyError, ValueError):
+    except (
+        KeyError,
+        ValueError,
+        FileNotFoundError
+    ):
+
         label_nombre.config(
             text="No se encontró la carta"
         )
+
+
 animando = False
 
 
@@ -165,8 +195,10 @@ def deslizar_carta(direccion, numero):
         buscar(numero)
         return
 
-    imagen_grande = imagen.resize(
-        (imagen.width * 2, imagen.height * 2),
+    imagen_grande = imagen.copy()
+
+    imagen_grande.thumbnail(
+        (500, 700),
         Image.Resampling.LANCZOS
     )
 
